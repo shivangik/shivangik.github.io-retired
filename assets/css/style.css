@@ -804,17 +804,21 @@ textarea.form-control {
 /*---------------*/
 
 figure.effect-bubba {
-	background: #9e5406;
+	background: #8BC34A;
 }
 
 figure.effect-bubba img {
-	opacity: 0.7;
+	opacity: 0;
 	-webkit-transition: opacity 0.35s;
 	transition: opacity 0.35s;
 }
 
+figure.effect-bubba:hover {
+	background: #AED581;
+}
+
 figure.effect-bubba:hover img {
-	opacity: 0.4;
+	opacity: 0;
 }
 
 figure.effect-bubba figcaption::before,
