@@ -333,7 +333,8 @@
 
 				<div class="col-sm-6 col-sm-offset-3">
 
-					<form id="contact-form" role="form">
+					<form class=form-horizontal" id="contact-form" role="form" method="post" action="handleFormSubmit.php">
+
 						<div class="ajax-hidden">
 							<div class="form-group wow fadeInUp">
 								<label class="sr-only" for="c_name">Name</label>
@@ -349,7 +350,7 @@
 								<textarea class="form-control" id="c_message" name="c_message" rows="7" placeholder="Message"></textarea>
 							</div>
 
-							<button type="submit" class="btn btn-lg btn-block wow fadeInUp" data-wow-delay=".3s">Send Message</button>
+							<button id="submit" name="submit" type="submit" value="send" class="btn btn-lg btn-block wow fadeInUp" data-wow-delay=".3s">Send Message</button>
 						</div>
 						<div class="ajax-response"></div>
 					</form>

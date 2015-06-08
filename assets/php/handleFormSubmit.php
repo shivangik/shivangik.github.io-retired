@@ -1,24 +1,35 @@
 <?php
+	if ($_POST["submit"]) {
+		$name = $_POST['c_name'];
+		$email = $_POST['C-email'];
+		$message = $_POST['message'];
+		$human = intval($_POST['human']);
+		$from = 'Demo Contact Form';
+		$to = 'example@domain.com';
+		$subject = 'Message from Contact Demo ';
 
-if(isset($_POST['c_name'])){
+		$body ="From: $name\n E-Mail: $email\n Message:\n $message";
+		// Check if name has been entered
+		if (!$_POST['c_emailname']) {
+			$errName = 'Please enter your name';
+		}
 
-  $to = "khanna.shivangi@gmail.com";
-  $from = $_REQUEST['c_email'];
-  $name = $_REQUEST['c_name'];
-  $headers = "From: $from";
-  $subject = "[ACTION REQUIRED] Tutoring Request";
+		// Check if email has been entered and is valid
+		if (!$_POST['c_email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			$errEmail = 'Please enter a valid email address';
+		}
 
-  $fields = array();
-  $fields{"name"} = "c_name";
-  $fields{"email"} = "c_email";
-  $fields{"message"} = "c_message";
-
-  $body = "Here is what was sent:\n\n"; foreach($fields as $a => $b){   $body .= sprintf("%20s: %s\n",$b,$_REQUEST[$a]); }
-
-  $send = mail($to, $subject, $body, $headers);
-  $res['sendstatus'] = 1;
-  $res['message'] = 'Form Submission Succesful';
-  echo json_encode($res);
+		//Check if message has been entered
+		if (!$_POST['c_message']) {
+			$errMessage = 'Please enter your message';
+		}
+// If there are no errors, send the email
+if (!$errName && !$errEmail && !$errMessage) {
+	if (mail ($to, $subject, $body, $from)) {
+		$result='<div class="alert alert-success">Thank You! I will be in touch</div>';
+	} else {
+		$result='<div class="alert alert-danger">Sorry there was an error sending your message. Please try again later.</div>';
+	}
 }
-
+	}
 ?>
